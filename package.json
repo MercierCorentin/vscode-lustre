@@ -7,7 +7,8 @@
         "vscode": "^1.41.0"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Snippets"
     ],
     "contributes": {
         "languages": [{
@@ -18,8 +19,12 @@
         }],
         "grammars": [{
             "language": "lustre",
-            "scopeName": "",
+            "scopeName": "source.lustre",
             "path": "./syntaxes/lustre.tmLanguage.json"
+        }],
+        "snippets": [{
+            "language": "lustre",
+            "path": "./snippets/lustre.json"
         }]
     }
 }
