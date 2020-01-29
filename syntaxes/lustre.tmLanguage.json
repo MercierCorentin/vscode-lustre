@@ -3,7 +3,16 @@
     "name": "lustre",
     "patterns": [
         {
+            "include": "#comments"
+        },
+        {
             "include": "#constants"
+        },
+        {
+            "include": "#typeDeclarations"
+        },
+        {
+            "include": "#constDeclarations"
         },
         {
             "include": "#externFunctions"
@@ -15,9 +24,6 @@
             "include": "#functionBody"
         },
         {
-            "include": "#comments"
-        },
-        {
             "include": "#storages"
         },
         {
@@ -25,9 +31,6 @@
         },
         {
             "include": "#strings"
-        },
-        {
-            "include": "#typeDeclarations"
         }
     ],
     "repository": {
@@ -102,17 +105,32 @@
             },
             "patterns": [
                 {
+                    "include": "#comments"
+                },
+                {
                     "include": "#localVarDecl"
                 },
                 {
-                    "include": "#localConstDecl"
+                    "include": "#constDeclarations"
+                },
+                {
+                    "match": "(^|\\s+)(let)\\s*;?\\s*",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.other.lustre"
+                        }
+                    }
                 },
                 {
                     "include": "#functionBody"
                 }
             ],
-            "applyEndPatternLast": 1,
-            "end": ";"
+            "end": "(tel);?",
+            "endCaptures": {
+                "1": {
+                    "name": "keyword.other.lustre"
+                }
+            }
         },
         "typeIdentifier": {
             "patterns": [
@@ -173,10 +191,6 @@
         },
         "storages": {
             "patterns": [
-                {
-                    "name": "storage.modifier.lustre",
-                    "match": "\\b(const)(?=(\\W+))"
-                },
                 {
                     "name": "storage.type.lustre",
                     "match": "\\b(int|real|bool|enum|struct)\\b"
@@ -340,15 +354,17 @@
                 }
             }
         },
-        "localConstDecl": {
-            "match": "(const)\\s+(.+)\\n",
-            "name": "meta.function.declaration.const.lustre",
+        "constDeclarations": {
+            "match": "^\\s*(const)\\s+(.+)",
             "captures": {
                 "1": {
                     "name": "storage.type.lustre"
                 },
                 "2": {
                     "patterns": [
+                        {
+                            "include": "#comments"
+                        },
                         {
                             "match": "\\s*(\\w+)\\s*(:\\s*(\\w+)\\s*)?=\\s*(.+)\\s*;",
                             "captures": {
@@ -358,7 +374,7 @@
                                 "3": {
                                     "patterns": [
                                         {
-                                            "include": "#typeIdentifier"
+                                            "include": "#types"
                                         }
                                     ]
                                 },
@@ -377,23 +393,12 @@
         },
         "functionBody": {
             "name": "meta.function.body.lustre",
-            "begin": "(^|\\s*)(let)",
-            "beginCaptures": {
-                "2": {
-                    "name": "keyword.other.lustre"
-                }
-            },
+            "while": "^((?!(^|\\s+)tel).)*$",
             "patterns": [
                 {
                     "include": "#equationsAndAssertions"
                 }
-            ],
-            "end": "(^|\\s*)(tel)\\s*",
-            "endCaptures": {
-                "2": {
-                    "name": "keyword.other.lustre"
-                }
-            }
+            ]
         },
         "equationsAndAssertions": {
             "comment": "Decides beetween equation or assertion",
