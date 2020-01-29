@@ -1,3 +1,5 @@
-.vscode
 .vscode-test/**
 vsc-extension-quickstart.md
+.vscode/*
+!.vscode/launch.json
+
