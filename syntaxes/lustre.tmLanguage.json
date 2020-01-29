@@ -168,13 +168,17 @@
         "constants": {
             "patterns": [
                 {
-                    "match": "(?<=\\W)\\d+(\\.(\\d*)?)",
+                    "match": "\\b(true|false)\\b",
+                    "name": "constant.language.lustre"
+                },
+                {
+                    "match": "(?<=\\W)(\\.?\\d+)([Ee][+-]?\\d+)?",
                     "name": "constant.numeric.lustre"
                 },
                 {
-                    "match": "(?<=\\W)(\\.?\\d+)(e[+-]?\\d+)?",
+                    "match": "(?<=\\W)\\d+(\\.(\\d*)?)",
                     "name": "constant.numeric.lustre"
-                }
+                } 
             ]
         },
         "keywords": {
@@ -219,7 +223,7 @@
                         "2": {
                             "patterns": [
                                 {
-                                    "match": "(\\w+)\\s*:\\s*(\\w+)$",
+                                    "match": "(\\w+)\\s*:\\s*(\\w+)",
                                     "captures": {
                                         "1": {
                                             "name": "variable.other.lustre"
@@ -404,40 +408,31 @@
             "comment": "Decides beetween equation or assertion",
             "patterns": [
                 {
-                    "match": "(assert)(.+)(?>;)",
+                    "begin": "(assert)",
                     "name": "meta.function.body.assertion.lustre",
-                    "captures": {
+                    "beginCaptures": {
                         "1": {
                             "name": "keyword.control.lustre"
-                        },
-                        "2": {
-                            "patterns": [
-                                {
-                                    "include": "#expressions"
-                                }
-                            ]
                         }
-                    }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        }
+                    ],
+                    "end" : ";"
                 },
                 {
-                    "match": "(^\\s*(?!assert)(.+)=(.+);)",
-                    "name": "meta.function.body.equation.lustre",
-                    "captures": {
-                        "2": {
-                            "patterns": [
-                                {
-                                    "include": "#expressions"
-                                }
-                            ]
+                    "while": "^((?!;).)*$",
+                    "ContentName": "meta.function.body.equation.lustre",
+                    "patterns": [
+                        {
+                            "include": "#expressions"
                         },
-                        "3": {
-                            "patterns": [
-                                {
-                                    "include": "#expressions"
-                                }
-                            ]
+                        {
+                            "include": "#expressions"
                         }
-                    }
+                    ]
                 }
             ]
         },
