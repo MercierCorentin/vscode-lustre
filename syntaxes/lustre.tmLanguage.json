@@ -6,19 +6,25 @@
             "include": "#comments"
         },
         {
+            "include": "#keywords"
+        },
+        {
             "include": "#constants"
         },
         {
             "include": "#typeDeclarations"
         },
         {
-            "include": "#constDeclarations"
+            "include": "#constantsDecl"
         },
         {
             "include": "#externFunctions"
         },
         {
-            "include": "#functions"
+            "include": "#header"
+        },
+        {
+            "include": "#headerNext"
         },
         {
             "include": "#functionBody"
@@ -27,20 +33,13 @@
             "include": "#storages"
         },
         {
-            "include": "#variables"
-        },
-        {
-            "include": "#strings"
+            "include": "#varDecl"
         }
     ],
     "repository": {
         "externFunctions": {
-            "match": "((unsafe)?\\s*(extern)\\s*(function|node)\\s*(\\w+)\\((.+)\\)\\s*(returns)\\s*\\((.+)\\);)",
-            "name": "meta.function.extern.lustre",
+            "match": "((unsafe)?\\s*(extern)\\s*(function|node)\\s*(\\w+)\\((.+)\\)\\s*(returns)\\s*\\((.+)\\);?)",
             "captures": {
-                "1": {
-                    "name": "meta.function.header.lustre"
-                },
                 "2": {
                     "name": "storage.modifier.lustre"
                 },
@@ -72,65 +71,39 @@
                 }
             }
         },
-        "functions": {
-            "name": "meta.function.lustre",
-            "begin": "(^\\s*(?!unsafe)(?!extern)\\s*(function|node)\\s*(\\w+)\\((.+)\\)\\s*(returns)\\s*\\((.+)\\);)",
+        "header": {
+            "begin": "^\\s*(?!extern)\\s*(unsafe)?\\s*(function|node)\\s*(\\w+)\\(",
             "beginCaptures": {
-                "1": {
-                    "name": "meta.function.header.lustre"
-                },
                 "2": {
-                    "name": "storage.type.lustre"
+                    "name": "storage.modifier.lustre"
                 },
                 "3": {
-                    "name": "entity.name.function.lustre"
+                    "name": "storage.type.lustre"
                 },
                 "4": {
-                    "patterns": [
-                        {
-                            "include": "#varDecl"
-                        }
-                    ]
-                },
-                "5": {
-                    "name": "keyword.other.lustre"
-                },
-                "6": {
-                    "patterns": [
-                        {
-                            "include": "#varDecl"
-                        }
-                    ]
+                    "name": "entity.name.function.lustre"
                 }
             },
             "patterns": [
                 {
-                    "include": "#comments"
-                },
-                {
-                    "include": "#localVarDecl"
-                },
-                {
-                    "include": "#constDeclarations"
-                },
-                {
-                    "match": "(^|\\s+)(let)\\s*;?\\s*",
-                    "captures": {
-                        "2": {
-                            "name": "keyword.other.lustre"
-                        }
-                    }
-                },
-                {
-                    "include": "#functionBody"
+                    "include": "#varDecl"
                 }
             ],
-            "end": "(tel);?",
-            "endCaptures": {
+            "end": "\\)"
+        },
+        "headerNext": {
+            "begin": "\\s*(returns)\\s*\\(",
+            "beginCaptures": {
                 "1": {
                     "name": "keyword.other.lustre"
                 }
-            }
+            },
+            "patterns": [
+                {
+                    "include": "#varDecl"
+                }
+            ],
+            "end": "\\);?\\s*$"
         },
         "typeIdentifier": {
             "patterns": [
@@ -178,7 +151,7 @@
                 {
                     "match": "(?<=\\W)\\d+(\\.(\\d*)?)",
                     "name": "constant.numeric.lustre"
-                } 
+                }
             ]
         },
         "keywords": {
@@ -190,6 +163,10 @@
                 {
                     "name": "keyword.operator.lustre",
                     "match": "\\b(>=|<=|=>|<>|<|>|=|-|\\^|and|or|not|xor|div|mod|nor)\\b"
+                },
+                {
+                    "name": "keyword.other.lustre",
+                    "match": "^\\s*(var|const)\\s*"
                 }
             ]
         },
@@ -198,17 +175,6 @@
                 {
                     "name": "storage.type.lustre",
                     "match": "\\b(int|real|bool|enum|struct)\\b"
-                }
-            ]
-        },
-        "strings": {
-            "name": "string.quoted.double.lustre",
-            "begin": "\"",
-            "end": "\"",
-            "patterns": [
-                {
-                    "name": "constant.character.escape.lustre",
-                    "match": "\\\\."
                 }
             ]
         },
@@ -298,22 +264,6 @@
                 }
             }
         },
-        "localVarDecl": {
-            "match": "(var)\\s+(.+);",
-            "name": "meta.function.declaration.variables.lustre",
-            "captures": {
-                "1": {
-                    "name": "storage.type.lustre"
-                },
-                "2": {
-                    "patterns": [
-                        {
-                            "include": "#varDecl"
-                        }
-                    ]
-                }
-            }
-        },
         "varDecl": {
             "match": "(\\w+)\\s*((:\\s*([\\w \\^]+))|(\\s*,\\s*))",
             "captures": {
@@ -358,58 +308,55 @@
                 }
             }
         },
-        "constDeclarations": {
-            "match": "^\\s*(const)\\s+(.+)",
+        "constantsDecl" : {
+            "match": "\\s*(\\w+)\\s*(:\\s*(\\w+)\\s*)?=\\s*(.+)\\s*;",
             "captures": {
                 "1": {
-                    "name": "storage.type.lustre"
+                    "name": "variable.other.lustre"
                 },
-                "2": {
+                "3": {
                     "patterns": [
                         {
-                            "include": "#comments"
-                        },
+                            "include": "#types"
+                        }
+                    ]
+                },
+                "4": {
+                    "patterns": [
                         {
-                            "match": "\\s*(\\w+)\\s*(:\\s*(\\w+)\\s*)?=\\s*(.+)\\s*;",
-                            "captures": {
-                                "1": {
-                                    "name": "variable.other.lustre"
-                                },
-                                "3": {
-                                    "patterns": [
-                                        {
-                                            "include": "#types"
-                                        }
-                                    ]
-                                },
-                                "4": {
-                                    "patterns": [
-                                        {
-                                            "include": "#expressions"
-                                        }
-                                    ]
-                                }
-                            }
+                            "include": "#expressions"
                         }
                     ]
                 }
             }
         },
         "functionBody": {
-            "name": "meta.function.body.lustre",
-            "while": "^((?!(^|\\s+)tel).)*$",
+            "begin": "^\\s*(let)\\s*$",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.other.lustre"
+                }
+            },
             "patterns": [
+                {
+                    "include": "#comments"
+                },
                 {
                     "include": "#equationsAndAssertions"
                 }
-            ]
+            ],
+            "end": "^\\s*(tel)\\s*;?\\s*$",
+            "endCaptures": {
+                "1": {
+                    "name": "keyword.other.lustre"
+                }
+            }
         },
         "equationsAndAssertions": {
             "comment": "Decides beetween equation or assertion",
             "patterns": [
                 {
                     "begin": "(assert)",
-                    "name": "meta.function.body.assertion.lustre",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.lustre"
@@ -420,11 +367,10 @@
                             "include": "#expressions"
                         }
                     ],
-                    "end" : ";"
+                    "end": ";"
                 },
                 {
                     "while": "^((?!;).)*$",
-                    "ContentName": "meta.function.body.equation.lustre",
                     "patterns": [
                         {
                             "include": "#expressions"
@@ -437,7 +383,6 @@
             ]
         },
         "expressions": {
-            "name": "meta.expression.lustre",
             "patterns": [
                 {
                     "include": "#constants"
