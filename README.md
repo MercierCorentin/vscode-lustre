@@ -4,7 +4,19 @@ This extension provides a syntax highlight and snippets for LUSTRE language.
 
 ## Installation
 
-This extension is being built. To use it, open source folder in VS Code and press `F5`. This will open another VS Code window in wich you can type your Lustre code.
+This extension is being built. To use it, open a terminal and type:
+```bash
+sudo apt install npm
+npm install -g vsce
+git pull https://github.com/MercierCorentin/vscode-lustre.git
+cd vscode-lustre
+vsce package
+```
+
+- Open Visual Studio Code and select View->Extensions from the menu to display the Extensions pane.
+- Click the ... at the top-right corner of the Extensions pane and select "Install from VSIX..." on the menu that appears.
+- Select the `.vsix` file.
+
 
 ## Lustre
 
@@ -21,6 +33,5 @@ For issues you can either create a Github issue or send an email to the maintain
 ## Versions
 | Number  |  Release Date  | Changes  |
 |---|---|---|
-| 0.0.1  | 2020-01-29  |  Single-line syntax highlight + snippets |
-| 0.1.0  | Not planned yet  |  Multiline syntax highlight |
-| 1.0.0  | Not planned yet  |  Stable version |
+| 0.1.0  | Within a few days  |  Syntax highlight + Snippets |
+| 1.0.0  | Within the next few weeks  |  Stable version |

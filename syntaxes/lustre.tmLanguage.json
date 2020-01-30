@@ -74,13 +74,13 @@
         "header": {
             "begin": "^\\s*(?!extern)\\s*(unsafe)?\\s*(function|node)\\s*(\\w+)\\(",
             "beginCaptures": {
-                "2": {
+                "1": {
                     "name": "storage.modifier.lustre"
                 },
-                "3": {
+                "2": {
                     "name": "storage.type.lustre"
                 },
-                "4": {
+                "3": {
                     "name": "entity.name.function.lustre"
                 }
             },
@@ -166,7 +166,7 @@
                 },
                 {
                     "name": "keyword.other.lustre",
-                    "match": "^\\s*(var|const)\\s*"
+                    "match": "^\\s*(var|const)\\s+"
                 }
             ]
         },

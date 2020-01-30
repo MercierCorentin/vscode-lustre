@@ -1,8 +1,14 @@
 {
     "name": "lustre",
-    "displayName": "lustre",
-    "description": "",
-    "version": "0.0.1",
+    "displayName": "Lustre",
+    "description": "Lustre syntax highlight and snippets",
+    "publisher" : "IRSN",
+    "version": "0.1.0-beta",
+    "icon" : "images/logo.png",
+    "readme": "README.md",
+    "author": {
+        "name": "Mercier Corentin"
+    },
     "engines": {
         "vscode": "^1.41.0"
     },
@@ -10,6 +16,14 @@
         "Programming Languages",
         "Snippets"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MercierCorentin/vscode-lustre.git"
+    },
+    "bugs": {
+        "url": "https://github.com/MercierCorentin/vscode-lustre/issues",
+        "email": "corentin.mercier@irsn.fr"
+    },
     "contributes": {
         "languages": [{
             "id": "lustre",
