@@ -38,7 +38,7 @@
     ],
     "repository": {
         "externFunctions": {
-            "match": "((unsafe)?\\s*(extern)\\s*(function|node)\\s*(\\w+)\\((.+)\\)\\s*(returns)\\s*\\((.+)\\);?)",
+            "match": "((unsafe)?\\s*(extern)\\s*(function|node)\\s*(\\w+)\\s*\\((.+)\\)\\s*(returns)\\s*\\((.+)\\)\\s*;?)",
             "captures": {
                 "2": {
                     "name": "storage.modifier.lustre"
@@ -72,7 +72,7 @@
             }
         },
         "header": {
-            "begin": "^\\s*(?!extern)\\s*(unsafe)?\\s*(function|node)\\s*(\\w+)\\(",
+            "begin": "^\\s*(?!extern)\\s*(unsafe)?\\s*(function|node)\\s*(\\w+)\\s*\\(",
             "beginCaptures": {
                 "1": {
                     "name": "storage.modifier.lustre"
@@ -103,7 +103,7 @@
                     "include": "#varDecl"
                 }
             ],
-            "end": "\\);?\\s*$"
+            "end": "\\)\\s*;?\\s*$"
         },
         "typeIdentifier": {
             "patterns": [

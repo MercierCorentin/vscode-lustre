@@ -25,6 +25,7 @@ type array = int ^ 3;
 -- const declaration
 const pi : real = 3.1415;
 	test : real = 1e15;
+	boolean : bool = true; -- boolean declaration
 
 
 -- function declaration
@@ -50,12 +51,13 @@ let
 tel;
 
 -- Multiline node header + unsafe node
+-- No semi colon at end
 unsafe node test_2(
 	param1 : int;
 	param2 : integer;
 )returns (
 	test : bool ^ 6
-);
+)
 var 
 	memory : int;
 	memory2 : integer;
@@ -69,8 +71,10 @@ let
    (test[0], test[1], test[2], test[3], test[4], test[5]) = (param1 > 2, param2 > 3, memory = (param1 + param2), 1e12 = constant, 1 = constant2, memory2 > 3);
 tel;
 
-node complex_add(x, y : complex ) returns (z : complex);
+-- Spaces between every captured  element
+node   complex_add   (x, y : complex )   returns   (z : complex)   ;
 let
+	-- Record expression
    	z = complex { 
 	   r = x.r + y.r,
 	   im = x.im + y.im

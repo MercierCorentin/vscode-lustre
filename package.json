@@ -1,7 +1,7 @@
 {
     "name": "lustre",
     "displayName": "Lustre",
-    "description": "Lustre syntax highlight and snippets",
+    "description": "Lustre syntax highlighting and snippets",
     "publisher" : "IRSN",
     "version": "0.1.0-beta",
     "icon" : "images/logo.png",

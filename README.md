@@ -1,6 +1,6 @@
 # VScode Lustre extension
 
-This extension provides a syntax highlight and snippets for LUSTRE language.
+This extension provides a syntax highlighting and snippets for LUSTRE language.
 
 ## Installation
 
@@ -15,7 +15,7 @@ vsce package
 
 - Open Visual Studio Code and select View->Extensions from the menu to display the Extensions pane.
 - Click the ... at the top-right corner of the Extensions pane and select "Install from VSIX..." on the menu that appears.
-- Select the `.vsix` file.
+- Select the created `.vsix` file.
 
 
 ## Lustre
