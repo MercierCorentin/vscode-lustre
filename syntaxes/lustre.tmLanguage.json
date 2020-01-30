@@ -405,7 +405,12 @@
                 {
                     "match": "(^|(?<=\\W))(\\w+)(?=\\()",
                     "comment": "Function calls",
-                    "name": "entity.name.function"
+                    "name": "entity.name.function.lustre"
+                },
+                {
+                    "match": "(?<==)\\s*(\\w+)\\s*(?=\\{)",
+                    "comment": "Record expression",
+                    "name": "entity.name.type.lustre"
                 }
             ]
         }

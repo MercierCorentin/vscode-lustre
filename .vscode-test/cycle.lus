@@ -68,3 +68,11 @@ let
 	memory2 = param1 + 1;
    (test[0], test[1], test[2], test[3], test[4], test[5]) = (param1 > 2, param2 > 3, memory = (param1 + param2), 1e12 = constant, 1 = constant2, memory2 > 3);
 tel;
+
+node complex_add(x, y : complex ) returns (z : complex);
+let
+   	z = complex { 
+	   r = x.r + y.r,
+	   im = x.im + y.im
+	};
+tel;
