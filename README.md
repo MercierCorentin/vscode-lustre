@@ -8,7 +8,7 @@ This extension is being built. To use it, open a terminal and type:
 ```bash
 sudo apt install npm
 npm install -g vsce
-git pull https://github.com/MercierCorentin/vscode-lustre.git
+git clone https://github.com/MercierCorentin/vscode-lustre.git
 cd vscode-lustre
 vsce package
 ```
@@ -29,6 +29,21 @@ This extension implements Lustre Core syntax highlight and snippets. Lustre Core
 ## Issues
 
 For issues you can either create a Github issue or send an email to the maintainer (corentin.mercier(at)irsn.fr).
+
+## Snippets
+| Prefix | Snippet |
+|---|---|
+| node | Node Header + Body |
+| function | Function header + Body |
+| node_a | Node Header + Local Variables and Constants declaration +  Body | 
+| let    | Body |
+| extern_n | External node |
+| extern_f | External function |
+| var | Variable declaration | 
+| const | Constants declaration | 
+| type | User type definition | 
+| struct | Structure definition | 
+| enum | Enum type definition | 
 
 ## Versions
 | Number  |  Release Date  | Changes  |

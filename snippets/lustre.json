@@ -80,13 +80,13 @@
         "body": [
             "struct { ${1:var1} : ${2:var1Type}, ${3:var2} : ${4:var2Type} };"
         ],
-        "description": "Struct definition"
+        "description": "Structure definition"
     },
     "Enum type definition": {
         "prefix": "enum",
         "body": [
             "enum { ${1:Value1}, ${2:Value2} };"
         ],
-        "description": "Struct definition"
+        "description": "Enum type definition"
     }
 }
