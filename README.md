@@ -8,7 +8,7 @@ This extension is being built. To use it, open a terminal and type:
 ```bash
 sudo apt install npm
 npm install -g vsce
-git clone https://github.com/MercierCorentin/vscode-lustre.git
+git clone https://github.com/IRSN/vscode-lustre.git
 cd vscode-lustre
 vsce package
 ```
