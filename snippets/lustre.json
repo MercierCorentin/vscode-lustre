@@ -1,0 +1,92 @@
+{
+    "Node": {
+        "prefix": "node",
+        "body": [
+            "node ${1:node_name}(${2:parameters}) returns (${3:return_values});",
+            "let",
+            "   $4",
+            "tel;"
+        ],
+        "description": "Node base architecture"
+    },
+    "Function": {
+        "prefix": "function",
+        "body": [
+            "function ${1:node_name}(${2:parameters}) returns (${3:return_values});",
+            "let",
+            "   $4",
+            "tel;"
+        ],
+        "description": "Function architecture"
+    },
+    "Full Node": {
+        "prefix": "node_a",
+        "body": [
+            "node ${1:nodeidentifier}(${2:param}: ${3:paramType}) returns (${4:var}: ${5:varType});",
+            "var ${6:var} : ${7:varType};",
+            "const ${8:constant} : ${9:constType};",
+            "let",
+            "   $10",
+            "tel;"
+        ],
+        "description": "Node full architecture"
+    },
+    "Node body": {
+        "prefix": "let",
+        "body": [
+            "let",
+            "   $1",
+            "tel;"
+        ],
+        "description": "Node body architecture"
+    },
+    "Node header": {
+        "prefix": "extern_n",
+        "body": [
+            "extern node ${1:nodeIdentifier}(${2:param}: ${3:paramType}) returns (${4:variable}: ${5:varType});"
+        ],
+        "description": "Node header architecture"
+    },
+    "Function header": {
+        "prefix": "extern_f",
+        "body": [
+            "extern function ${1:nodeIdentifier}(${2:param}: ${3:paramType}) returns (${4:variable}: ${5:varType});"
+        ],
+        "description": "Function header architecture"
+    },
+    "Local Variable Declaration": {
+        "prefix": "var",
+        "body": [
+            "var ${1:Identifier} : ${2:Type};"
+        ],
+        "description": "Local Variable Declaration"
+    },
+    "Local Constant Declaration": {
+        "prefix": "const",
+        "body": [
+            "const ${1:Identifier} : ${2:Type} = ${3:Expression};"
+        ],
+        "description": "Local Constant Declaration"
+    },
+    "Type definition": {
+        "prefix": "type",
+        "body": [
+            "type ${1:Identifier} = ${2:Type};"
+        ],
+        "description": "Type definition"
+    },
+    "Struct definition": {
+        "prefix": "struct",
+        "body": [
+            "struct { ${1:var1} : ${2:var1Type}, ${3:var2} : ${4:var2Type} };"
+        ],
+        "description": "Structure definition"
+    },
+    "Enum type definition": {
+        "prefix": "enum",
+        "body": [
+            "enum { ${1:Value1}, ${2:Value2} };"
+        ],
+        "description": "Enum type definition"
+    }
+}

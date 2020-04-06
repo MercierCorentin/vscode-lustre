@@ -1,0 +1,82 @@
+(* 
+  VS Code Lustre extension syntax higlight testing file
+*)
+
+-- Comments test
+(* test *)
+/* test */
+-- Test
+	-- Test
+(*
+  multiline comment 1
+*)
+/* 
+  multiline comment 2
+*/
+
+
+-- Type declarations
+type testEnum = enum {white, blue, red};
+type complex = struct { r : int; im : int};
+type testStruct = struct { var1 : complex; var2 : testEnum };
+type integer = int;
+type array = int ^ 3;
+
+-- const declaration
+const pi : real = 3.1415;
+	test : real = 1e15;
+	boolean : bool = true; -- boolean declaration
+
+
+-- function declaration
+extern function try(param: int) returns (return: int);
+unsafe extern function try_2(param: int) returns (return: int);
+
+-- Multiline function header + unsafe function
+unsafe function test(
+	param1 : int;
+	param2 : integer;
+	param4 : int;
+	param5 : bool;
+)returns (
+	test : bool ^ 4
+);
+let
+   (test[0], test[1], test[2], test[3]) = (param1 > 2, param2 > 3, param4 > 0, param5);
+tel;
+
+function double(E: int) returns (S: int);
+let
+  	S = 2 * E;
+tel;
+
+-- Multiline node header + unsafe node
+-- No semi colon at end
+unsafe node test_2(
+	param1 : int;
+	param2 : integer;
+)returns (
+	test : bool ^ 6
+)
+var 
+	memory : int;
+	memory2 : integer;
+const 
+	constant : real = 1E12;
+	constant2 : integer = 1;
+let
+	assert(constant = 1E12);
+	memory = param1 + param2;
+	memory2 = param1 + 1;
+   (test[0], test[1], test[2], test[3], test[4], test[5]) = (param1 > 2, param2 > 3, memory = (param1 + param2), 1e12 = constant, 1 = constant2, memory2 > 3);
+tel;
+
+-- Spaces between every captured  element
+node   complex_add   (x, y : complex )   returns   (z : complex)   ;
+let
+	-- Record expression
+   	z = complex { 
+	   r = x.r + y.r,
+	   im = x.im + y.im
+	};
+tel;

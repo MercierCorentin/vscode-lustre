@@ -1,32 +1,419 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "lustre",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.lustre",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.lustre",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.lustre",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": ""
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "lustre",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#typeDeclarations"
+        },
+        {
+            "include": "#constantsDecl"
+        },
+        {
+            "include": "#externFunctions"
+        },
+        {
+            "include": "#header"
+        },
+        {
+            "include": "#headerNext"
+        },
+        {
+            "include": "#functionBody"
+        },
+        {
+            "include": "#storages"
+        },
+        {
+            "include": "#varDecl"
+        }
+    ],
+    "repository": {
+        "externFunctions": {
+            "match": "((unsafe)?\\s*(extern)\\s*(function|node)\\s*(\\w+)\\s*\\((.+)\\)\\s*(returns)\\s*\\((.+)\\)\\s*;?)",
+            "captures": {
+                "2": {
+                    "name": "storage.modifier.lustre"
+                },
+                "3": {
+                    "name": "storage.modifier.lustre"
+                },
+                "4": {
+                    "name": "storage.type.lustre"
+                },
+                "5": {
+                    "name": "entity.name.function.lustre"
+                },
+                "6": {
+                    "patterns": [
+                        {
+                            "include": "#varDecl"
+                        }
+                    ]
+                },
+                "7": {
+                    "name": "keyword.other.lustre"
+                },
+                "8": {
+                    "patterns": [
+                        {
+                            "include": "#varDecl"
+                        }
+                    ]
+                }
+            }
+        },
+        "header": {
+            "begin": "^\\s*(?!extern)\\s*(unsafe)?\\s*(function|node)\\s*(\\w+)\\s*\\(",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.modifier.lustre"
+                },
+                "2": {
+                    "name": "storage.type.lustre"
+                },
+                "3": {
+                    "name": "entity.name.function.lustre"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#varDecl"
+                }
+            ],
+            "end": "\\)"
+        },
+        "headerNext": {
+            "begin": "\\s*(returns)\\s*\\(",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.other.lustre"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#varDecl"
+                }
+            ],
+            "end": "\\)\\s*;?\\s*$"
+        },
+        "typeIdentifier": {
+            "patterns": [
+                {
+                    "include": "#constants"
+                },
+                {
+                    "match": "(int|real|bool|enum|struct)(\\W|$)",
+                    "name": "storage.type.lustre"
+                },
+                {
+                    "match": "\\w+",
+                    "name": "entity.name.type.lustre"
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.lustre",
+                    "match": "--.*"
+                },
+                {
+                    "name": "comment.block.lustre",
+                    "begin": "\\/\\*",
+                    "end": "\\*\\/"
+                },
+                {
+                    "name": "comment.block.lustre",
+                    "begin": "\\(\\*",
+                    "end": "\\*\\)"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "match": "\\b(true|false)\\b",
+                    "name": "constant.language.lustre"
+                },
+                {
+                    "match": "(?<=\\W)(\\.?\\d+)([Ee][+-]?\\d+)?",
+                    "name": "constant.numeric.lustre"
+                },
+                {
+                    "match": "(?<=\\W)\\d+(\\.(\\d*)?)",
+                    "name": "constant.numeric.lustre"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.lustre",
+                    "match": "\\b(if|then|else|assert|pre|current|when|fby)\\b"
+                },
+                {
+                    "name": "keyword.operator.lustre",
+                    "match": "\\b(>=|<=|=>|<>|<|>|=|-|\\^|and|or|not|xor|div|mod|nor)\\b"
+                },
+                {
+                    "name": "keyword.other.lustre",
+                    "match": "^\\s*(var|const)\\s+"
+                }
+            ]
+        },
+        "storages": {
+            "patterns": [
+                {
+                    "name": "storage.type.lustre",
+                    "match": "\\b(int|real|bool|enum|struct)\\b"
+                }
+            ]
+        },
+        "types": {
+            "patterns": [
+                {
+                    "match": "(struct)\\s*{(.*)}",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.other.lustre"
+                        },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "match": "(\\w+)\\s*:\\s*(\\w+)",
+                                    "captures": {
+                                        "1": {
+                                            "name": "variable.other.lustre"
+                                        },
+                                        "2": {
+                                            "patterns": [
+                                                {
+                                                    "include": "#typeIdentifier"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "comment": "Match enum types",
+                    "match": "(enum)\\s*{(.*)}",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.other.lustre"
+                        },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "match": "\\s*(\\w+)\\s*",
+                                    "name": "variable.other.lustre"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "comment": "Matches array types",
+                    "match": "(\\w+)\\s*\\^\\s*(\\d+)",
+                    "captures": {
+                        "1": {
+                            "patterns": [
+                                {
+                                    "include": "#typeIdentifier"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "constant.numeric.lustre"
+                        }
+                    }
+                },
+                {
+                    "include": "#typeIdentifier"
+                }
+            ]
+        },
+        "typeDeclarations": {
+            "match": "(type)\\s*(\\w+)\\s*=\\s*(.+);",
+            "name": "meta.type.lustre",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.lustre"
+                },
+                "2": {
+                    "name": "entity.name.type.lustre"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "#types"
+                        }
+                    ]
+                }
+            }
+        },
+        "varDecl": {
+            "match": "(\\w+)\\s*((:\\s*([\\w \\^]+))|(\\s*,\\s*))",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter.lustre"
+                },
+                "4": {
+                    "patterns": [
+                        {
+                            "match": "((\\w+(\\s*\\^?\\s*\\d+)?)\\s+(when)\\s+(\\w+))|(\\w+\\s*\\^?\\s*\\d+)|(\\w+)",
+                            "captures": {
+                                "2": {
+                                    "patterns": [
+                                        {
+                                            "include": "#types"
+                                        }
+                                    ]
+                                },
+                                "4": {
+                                    "name": "keyword.control.lustre"
+                                },
+                                "5": {
+                                    "name": "variable.other.lustre"
+                                },
+                                "6": {
+                                    "patterns": [
+                                        {
+                                            "include": "#types"
+                                        }
+                                    ]
+                                },
+                                "7": {
+                                    "patterns": [
+                                        {
+                                            "include": "#types"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "constantsDecl" : {
+            "match": "\\s*(\\w+)\\s*(:\\s*(\\w+)\\s*)?=\\s*(.+)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "variable.other.lustre"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "#types"
+                        }
+                    ]
+                },
+                "4": {
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        }
+                    ]
+                }
+            }
+        },
+        "functionBody": {
+            "begin": "^\\s*(let)\\s*$",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.other.lustre"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#equationsAndAssertions"
+                }
+            ],
+            "end": "^\\s*(tel)\\s*;?\\s*$",
+            "endCaptures": {
+                "1": {
+                    "name": "keyword.other.lustre"
+                }
+            }
+        },
+        "equationsAndAssertions": {
+            "comment": "Decides beetween equation or assertion",
+            "patterns": [
+                {
+                    "begin": "(assert)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.lustre"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        }
+                    ],
+                    "end": ";"
+                },
+                {
+                    "while": "^((?!;).)*$",
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        },
+                        {
+                            "include": "#expressions"
+                        }
+                    ]
+                }
+            ]
+        },
+        "expressions": {
+            "patterns": [
+                {
+                    "include": "#constants"
+                },
+                {
+                    "include": "#keywords"
+                },
+                {
+                    "match": "(^|(?<=\\W))(\\w+)(\\.(\\w+))?(?=(\\W|$))(?!\\()",
+                    "comment": "Variable names",
+                    "captures": {
+                        "2": {
+                            "name": "variable.other.lustre"
+                        },
+                        "4": {
+                            "name": "variable.other.lustre"
+                        }
+                    }
+                },
+                {
+                    "match": "(^|(?<=\\W))(\\w+)(?=\\()",
+                    "comment": "Function calls",
+                    "name": "entity.name.function.lustre"
+                },
+                {
+                    "match": "(?<==)\\s*(\\w+)\\s*(?=\\{)",
+                    "comment": "Record expression",
+                    "name": "entity.name.type.lustre"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.lustre"
 }

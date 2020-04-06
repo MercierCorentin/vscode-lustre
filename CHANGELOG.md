@@ -1,3 +1,7 @@
 # Change Log
 
-All notable changes to the "lustre" extension will be documented in this file.
+## Version 0.1.0-beta
+
+Initial release :
+- Lustre core syntax highlighting
+- Snippets
