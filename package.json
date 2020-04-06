@@ -2,8 +2,8 @@
     "name": "lustre",
     "displayName": "Lustre",
     "description": "Lustre syntax highlighting and snippets",
-    "publisher" : "IRSN",
-    "version": "0.1.0-beta",
+    "publisher" : "MercierCorentin",
+    "version": "0.1.1",
     "icon" : "images/logo.png",
     "readme": "README.md",
     "author": {

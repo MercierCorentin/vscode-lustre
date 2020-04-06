@@ -4,11 +4,14 @@ This extension provides a syntax highlighting and snippets for LUSTRE language.
 
 ## Installation
 
-This extension is being built. To use it, open a terminal and type:
+You can install this extension from VSCode extension store.
+
+Or, if you need development version, you can use these commands:
+
 ```bash
 sudo apt install npm
 npm install -g vsce
-git clone https://github.com/IRSN/vscode-lustre.git
+git clone https://github.com/MercierCorentin/vscode-lustre.git
 cd vscode-lustre
 vsce package
 ```
@@ -48,5 +51,4 @@ For issues you can either create a Github issue or send an email to the maintain
 ## Versions
 | Number  |  Release Date  | Changes  |
 |---|---|---|
-| 0.1.0  | Within a few days  |  Syntax highlight + Snippets |
-| 1.0.0  | Within the next few weeks  |  Stable version |
+| 0.1.0  | 2020-04-06  |  Syntax highlight + Snippets |
