@@ -1,0 +1,10 @@
+branches:
+  only:
+  - master
+language: node_js
+
+before_script:
+- nvm install lts/dubnium
+- npm install -g vsce
+script:
+- vsce publish -p ${AZURE_TOKEN}
