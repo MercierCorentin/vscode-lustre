@@ -1,6 +1,14 @@
 # Change Log
+
 ## Version 0.1.1-beta
+
+- Added Continuous Deployment
+
+
+## Version 0.1.1-beta
+
 - Changed publication information + installation documentation
+
 
 ## Version 0.1.0-beta
 
