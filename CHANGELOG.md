@@ -1,6 +1,10 @@
 # Change Log
 
-## Version 0.1.1-beta
+## Version 0.1.3-beta
+
+- Add Open VSX deployment
+
+## Version 0.1.2-beta
 
 - Added Continuous Deployment
 
