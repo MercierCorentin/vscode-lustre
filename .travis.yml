@@ -6,5 +6,8 @@ language: node_js
 before_script:
 - nvm install lts/dubnium
 - npm install -g vsce
+- npm install -g ovsx
+
 script:
 - vsce publish -p ${AZURE_TOKEN}
+- npx ovsx publish -p ${OPEN_VSX_TOKEN}

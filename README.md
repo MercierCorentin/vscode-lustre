@@ -4,7 +4,7 @@ This extension provides a syntax highlighting and snippets for LUSTRE language.
 
 ## Installation
 
-You can install this extension from VSCode extension store.
+You can install this extension from the [Open VSX Registry (VSCodium)](https://open-vsx.org/extension/MercierCorentin/lustre) or [VSCode extension store (VSCode)](https://marketplace.visualstudio.com/items?itemName=MercierCorentin.lustre).
 
 Or, if you need development version, you can use these commands:
 
@@ -47,8 +47,4 @@ For issues you can either create a Github issue or send an email to the maintain
 | type | User type definition | 
 | struct | Structure definition | 
 | enum | Enum type definition | 
-
-## Versions
-| Number  |  Release Date  | Changes  |
-|---|---|---|
-| 0.1.0  | 2020-04-06  |  Syntax highlight + Snippets |
+ 
