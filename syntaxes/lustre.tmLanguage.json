@@ -158,15 +158,11 @@
             "patterns": [
                 {
                     "name": "keyword.control.lustre",
-                    "match": "\\b(if|then|else|assert|pre|current|when|fby)\\b"
+                    "match": "\\b(if|then|else|assert|pre|current|when|fby|include)\\b"
                 },
                 {
                     "name": "keyword.operator.lustre",
-                    "match": "\\b(>=|<=|=>|<>|<|>|=|-|\\^|and|or|not|xor|div|mod|nor)\\b"
-                },
-                {
-                    "name": "keyword.other.lustre",
-                    "match": "^\\s*(var|const)\\s+"
+                    "match": "\\b(>=|<=|=>|<>|<|>|=|\\-|\\+|\\*|\\/|\\^|and|or|not|xor|div|mod|nor|map)\\b"
                 }
             ]
         },
@@ -174,7 +170,7 @@
             "patterns": [
                 {
                     "name": "storage.type.lustre",
-                    "match": "\\b(int|real|bool|enum|struct)\\b"
+                    "match": "\\b(int|real|bool|enum|struct|function|node|var|const)\\b"
                 }
             ]
         },
