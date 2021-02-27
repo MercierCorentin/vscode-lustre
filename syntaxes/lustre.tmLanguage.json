@@ -87,6 +87,9 @@
             "patterns": [
                 {
                     "include": "#varDecl"
+                },
+                {
+                    "include": "#comments"
                 }
             ],
             "end": "\\)"
@@ -101,6 +104,9 @@
             "patterns": [
                 {
                     "include": "#varDecl"
+                },
+                {
+                    "include": "#comments"
                 }
             ],
             "end": "\\)\\s*;?\\s*$"
@@ -385,6 +391,9 @@
                 },
                 {
                     "include": "#keywords"
+                },
+                {
+                    "include": "#comments"
                 },
                 {
                     "match": "(^|(?<=\\W))(\\w+)(\\.(\\w+))?(?=(\\W|$))(?!\\()",
