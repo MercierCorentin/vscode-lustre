@@ -33,10 +33,12 @@ extern function try(param: int) returns (return: int);
 unsafe extern function try_2(param: int) returns (return: int);
 
 -- Multiline function header + unsafe function
-unsafe function test(
-	param1 : int;
-	param2 : integer;
-	param4 : int;
+unsafe node test(
+	param1 ,
+	tri : int;
+	param2,
+	treg : integer;
+	param4 : int; -- param4
 	param5 : bool;
 )returns (
 	test : bool ^ 4
@@ -53,10 +55,10 @@ tel;
 -- Multiline node header + unsafe node
 -- No semi colon at end
 unsafe node test_2(
-	param1 : int;
-	param2 : integer;
+	param1 : int; -- param1
+	param2 : integer; -- param2
 )returns (
-	test : bool ^ 6
+	test : bool ^ 6 -- test
 )
 var 
 	memory : int;
@@ -65,7 +67,9 @@ const
 	constant : real = 1E12;
 	constant2 : integer = 1;
 let
-	assert(constant = 1E12);
+	assert(
+		constant = 1E12 -- comment
+	);
 	memory = param1 + param2;
 	memory2 = param1 + 1;
    (test[0], test[1], test[2], test[3], test[4], test[5]) = (param1 > 2, param2 > 3, memory = (param1 + param2), 1e12 = constant, 1 = constant2, memory2 > 3);
@@ -76,7 +80,7 @@ node   complex_add   (x, y : complex )   returns   (z : complex)   ;
 let
 	-- Record expression
    	z = complex { 
-	   r = x.r + y.r,
+	   r = x.r + y.r;
 	   im = x.im + y.im
 	};
 tel;
