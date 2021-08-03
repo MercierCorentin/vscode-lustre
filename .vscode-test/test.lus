@@ -76,10 +76,14 @@ let
 tel;
 
 -- Spaces between every captured  element
-node   complex_add   (x, y : complex )   returns   (z : complex)   ;
+node   complex_add   (x, y : complex )   returns   (z, z2 : complex)   ;
 let
-	-- Record expression
+	-- Record expression with space around
    	z = complex { 
+	   r = x.r + y.r;
+	   im = x.im + y.im
+	};
+	z2 =complex{ 
 	   r = x.r + y.r;
 	   im = x.im + y.im
 	};
