@@ -1,5 +1,8 @@
 # Change Log
 
+## Version 0.1.6-beta
+- Fix struct type in expression coloration
+
 ## Version 0.1.5-beta
 - Comments highlighting improvement
 

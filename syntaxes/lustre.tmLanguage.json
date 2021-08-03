@@ -396,6 +396,11 @@
                     "include": "#comments"
                 },
                 {
+                    "match": "(?<==)\\s?(\\w+)\\s*(?=\\{)",
+                    "comment": "Record expression",
+                    "name": "entity.name.type.lustre"
+                },
+                {
                     "match": "(^|(?<=\\W))(\\w+)(\\.(\\w+))?(?=(\\W|$))(?!\\()",
                     "comment": "Variable names",
                     "captures": {
@@ -411,11 +416,6 @@
                     "match": "(^|(?<=\\W))(\\w+)(?=\\()",
                     "comment": "Function calls",
                     "name": "entity.name.function.lustre"
-                },
-                {
-                    "match": "(?<==)\\s*(\\w+)\\s*(?=\\{)",
-                    "comment": "Record expression",
-                    "name": "entity.name.type.lustre"
                 }
             ]
         }
