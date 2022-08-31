@@ -31,7 +31,7 @@ This extension implements Lustre Core syntax highlight and snippets. Lustre Core
 
 ## Issues
 
-For issues you can either create a Github issue or send an email to the maintainer (corentin.mercier(at)irsn.fr).
+For issues you can either create a Github issue or send an email to the maintainer (corentin.mercier(at)webanimus.com).
 
 ## Snippets
 | Prefix | Snippet |
